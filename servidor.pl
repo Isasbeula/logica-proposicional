@@ -13,3 +13,12 @@ server(Port) :-
 
 % Manipulador para a requisição de recomendação
 handle_recomendacao(Request) :-
+    http_parameters(Request, [
+        tipo(Tipo, [string]),
+        experiencia(Experiencia, [optional(true), default(nenhum)])
+    ]),
+    findall(Linguagem, (recomendacao(Tipo, Linguagem), recomendacao_por_experiencia(Experiencia, Linguagem)), Linguagens),
+    reply_json(json{tipo: Tipo, experiencia: Experiencia, linguagens: Linguagens}).
+
+% Iniciar o servidor na porta 8080 ao carregar o arquivo
+:- initialization(server(8080)).
