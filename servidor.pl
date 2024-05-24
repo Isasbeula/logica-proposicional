@@ -7,3 +7,9 @@
 % Iniciar o servidor HTTP
 :- http_handler(root(recomendacao), handle_recomendacao, []).
 
+% Definir o ponto de entrada do servidor
+server(Port) :-
+    http_server(http_dispatch, [port(Port)]).
+
+% Manipulador para a requisição de recomendação
+handle_recomendacao(Request) :-
