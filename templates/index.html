@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recomendação de Tecnologia</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Responda às perguntas para obter uma recomendação de tecnologia</h1>
+        <form id="questionsForm">
+            {% for i in range(12) %}
+                <div class="question">
+                    <p>{{ questions[i] }}</p>
+                    <label>
+                        <input type="radio" name="{{ i+1 }}" value="yes" required> Sim
+                    </label>
+                    <label>
+                        <input type="radio" name="{{ i+1 }}" value="no" required> Não
+                    </label>
+                </div>
+            {% endfor %}
+            <button type="submit">Obter Recomendação</button>
+        </form>
+    </div>
+</body>
+</html>
